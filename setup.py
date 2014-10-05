@@ -84,25 +84,7 @@ Let the machine do most of the work.
           'paperwork.backend.img',
       ],
       package_dir={
-          'paperwork': 'src/paperwork',
-          'paperwork.frontend': 'src/paperwork/frontend',
-          'paperwork.frontend.aboutdialog': 'src/paperwork/frontend/aboutdialog',
-          'paperwork.frontend.doceditdialog':
-              'src/paperwork/frontend/doceditdialog',
-          'paperwork.frontend.import': 'src/paperwork/frontend/import',
-          'paperwork.frontend.labeleditor': 'src/paperwork/frontend/labeleditor',
-          'paperwork.frontend.mainwindow': 'src/paperwork/frontend/mainwindow',
-          'paperwork.frontend.multiscan': 'src/paperwork/frontend/multiscan',
-          'paperwork.frontend.pageeditor': 'src/paperwork/frontend/pageeditor',
-          'paperwork.frontend.settingswindow':
-              'src/paperwork/frontend/settingswindow',
-          'paperwork.frontend.util': 'src/paperwork/frontend/util',
-          'paperwork.frontend.util.canvas':
-            'src/paperwork/frontend/util/canvas',
-          'paperwork.backend': 'src/paperwork/backend',
-          'paperwork.backend.common': 'src/paperwork/backend/common',
-          'paperwork.backend.pdf': 'src/paperwork/backend/pdf',
-          'paperwork.backend.img': 'src/paperwork/backend/img',
+	  '':'src'
           },
       data_files=[
           # glade files
