@@ -253,7 +253,7 @@ class MultiscanDialog(GObject.GObject):
         self.__config = config
 
         widget_tree = load_uifile(
-            os.path.join("multiscan", "multiscan.glade"))
+                        "paperwork/frontend/multiscan/multiscan.glade")
 
         self.window = widget_tree.get_object("dialogMultiscan")
 

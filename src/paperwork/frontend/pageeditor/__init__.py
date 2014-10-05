@@ -103,7 +103,7 @@ class PageEditingDialog(object):
         self.page = page
 
         widget_tree = load_uifile(
-            os.path.join("pageeditor", "pageeditor.glade"))
+                        "paperwork/frontend/pageeditor/pageeditor.glade")
 
         self.__dialog = widget_tree.get_object("dialogPageEditing")
         self.__dialog.set_transient_for(main_window.window)

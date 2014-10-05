@@ -47,7 +47,7 @@ class LabelEditor(object):
         Open the edit dialog, and update the label according to user changes
         """
         widget_tree = load_uifile(
-            os.path.join("labeleditor", "labeleditor.glade"))
+                        "paperwork/frontend/labeleditor/labeleditor.glade")
 
         dialog = widget_tree.get_object("dialogLabelEditor")
         name_entry = widget_tree.get_object("entryLabelName")

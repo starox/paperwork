@@ -17,6 +17,7 @@
 
 import logging
 import os
+from pkg_resources import resource_filename, Requirement
 
 import heapq
 import gettext
@@ -52,15 +53,11 @@ def load_uifile(filename):
         Exception -- If the file cannot be found
     """
     widget_tree = Gtk.Builder()
-    has_ui_file = False
-    for ui_dir in UI_FILES_DIRS:
-        ui_file = os.path.join(ui_dir, filename)
-        if os.access(ui_file, os.R_OK):
-            logging.info("UI file used: " + ui_file)
-            widget_tree.add_from_file(ui_file)
-            has_ui_file = True
-            break
-    if not has_ui_file:
+    ui_file = resource_filename(Requirement.parse("paperwork"), filename)
+    if os.access(ui_file, os.R_OK):
+        logging.info("UI file used: " + ui_file)
+        widget_tree.add_from_file(ui_file)
+    else:
         logging.error("Can't find resource file '%s'. Aborting" % filename)
         raise Exception("Can't find resource file '%s'. Aborting" % filename)
     return widget_tree

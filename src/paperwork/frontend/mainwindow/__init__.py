@@ -20,6 +20,7 @@ import gc
 import os
 import sys
 import threading
+from pkg_resources import resource_filename, Requirement
 
 import PIL.Image
 import gettext
@@ -1769,7 +1770,7 @@ class ActionImport(SimpleAction):
 
     def __select_file(self):
         widget_tree = load_uifile(
-            os.path.join("import", "importfileselector.glade"))
+                        "paperwork/frontend/import/importfileselector.glade")
         dialog = widget_tree.get_object("filechooserdialog")
         dialog.set_local_only(False)
         dialog.set_select_multiple(False)
@@ -1786,7 +1787,7 @@ class ActionImport(SimpleAction):
 
     def __select_importer(self, importers):
         widget_tree = load_uifile(
-            os.path.join("import", "importaction.glade"))
+                        "paperwork/frontend/import/importaction.glade")
         combobox = widget_tree.get_object("comboboxImportAction")
         importer_list = widget_tree.get_object("liststoreImportAction")
         dialog = widget_tree.get_object("dialogImportSelect")
@@ -2396,7 +2397,7 @@ class MainWindow(object):
             self.__init_app_menu(self.app)
 
         widget_tree = load_uifile(
-            os.path.join("mainwindow", "mainwindow.glade"))
+                        "paperwork/frontend/mainwindow/mainwindow.glade")
 
         self.window = self.__init_window(widget_tree, config)
 
@@ -3000,7 +3001,7 @@ class MainWindow(object):
         return image2pixbuf(img)
 
     def __init_app_menu(self, app):
-        app_menu = load_uifile(os.path.join("mainwindow", "appmenu.xml"))
+        app_menu = load_uifile("paperwork/frontend/mainwindow/appmenu.xml")
         advanced_menu = app_menu.get_object("advanced")
         show_all_boxes_widget = Gio.MenuItem.new(
             "XXX", "app.show_all_boxes")
@@ -3014,7 +3015,7 @@ class MainWindow(object):
         window.set_default_size(config['main_win_size'].value[0],
                                 config['main_win_size'].value[1])
 
-        logo_path = os.path.join(sys.prefix, 'share', 'icons', 'paperwork.svg')
+        logo_path = resource_filename(Requirement.parse("paperwork"), "data/paperwork.svg")
         if os.access(logo_path, os.F_OK):
             logo = GdkPixbuf.Pixbuf.new_from_file(logo_path)
             window.set_icon(logo)

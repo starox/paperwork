@@ -615,7 +615,7 @@ class SettingsWindow(GObject.GObject):
         ]
 
         widget_tree = load_uifile(
-            os.path.join("settingswindow", "settingswindow.glade"))
+                      "paperwork/frontend/settingswindow/settingswindow.glade")
 
         self.window = widget_tree.get_object("windowSettings")
         self.window.set_transient_for(mainwindow_gui)

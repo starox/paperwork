@@ -76,7 +76,7 @@ class DocEditDialog(object):
         self.doc = doc
 
         widget_tree = load_uifile(
-            os.path.join("doceditdialog", "doceditdialog.glade"))
+                        "paperwork/frontend/doceditdialog/doceditdialog.glade")
         self.date = {
             'year': {
                 'view': widget_tree.get_object("spinbuttonYear"),

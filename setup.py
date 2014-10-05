@@ -82,76 +82,13 @@ Let the machine do most of the work.
           'paperwork.backend.common',
           'paperwork.backend.pdf',
           'paperwork.backend.img',
+          'data',
       ],
       package_dir={
-	  '':'src'
+	  '':'src',
+	  'data': 'data',
           },
-      data_files=[
-          # glade files
-          (
-              os.path.join(sys.prefix, 'share/paperwork/aboutdialog'),
-              [
-                  'src/paperwork/frontend/aboutdialog/aboutdialog.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/settingswindow'),
-              [
-                  'src/paperwork/frontend/settingswindow/settingswindow.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/doceditdialog'),
-              [
-                  'src/paperwork/frontend/doceditdialog/doceditdialog.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/import'),
-              [
-                  'src/paperwork/frontend/import/importaction.glade',
-                  'src/paperwork/frontend/import/importfileselector.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/labeleditor'),
-              [
-                  'src/paperwork/frontend/labeleditor/labeleditor.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/mainwindow'),
-              [
-                  'src/paperwork/frontend/mainwindow/appmenu.xml',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/mainwindow'),
-              [
-                  'src/paperwork/frontend/mainwindow/mainwindow.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/multiscan'),
-              [
-                  'src/paperwork/frontend/multiscan/multiscan.glade',
-              ]
-          ),
-          (
-              os.path.join(sys.prefix, 'share/paperwork/pageeditor'),
-              [
-                  'src/paperwork/frontend/pageeditor/pageeditor.glade',
-              ]
-          ),
-          (os.path.join(sys.prefix, 'share/locale/fr/LC_MESSAGES'),
-           ['locale/fr/LC_MESSAGES/paperwork.mo']),
-          (os.path.join(sys.prefix, 'share/locale/de/LC_MESSAGES'),
-           ['locale/de/LC_MESSAGES/paperwork.mo']),
-          (os.path.join(sys.prefix, 'share/applications'),
-           ['data/paperwork.desktop']),
-          (os.path.join(sys.prefix, 'share/icons'),
-           ['data/paperwork.svg']),
-      ],
+      package_data={ '':['*.glade','*.xml','*.mo','*.svg','*.desktop'],'data':['*.svg']},
       scripts=['scripts/paperwork'],
       install_requires=[
           "Cython",
