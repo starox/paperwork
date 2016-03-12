@@ -17,6 +17,7 @@
 
 import logging
 import os
+import sys
 
 import heapq
 import gettext
@@ -30,18 +31,14 @@ logger = logging.getLogger(__name__)
 PREFIX = os.environ.get('VIRTUAL_ENV', '/usr')
 
 UI_FILES_DIRS = [
-    ".",
-    "src/paperwork/frontend",
-    PREFIX + "/local/share/paperwork",
-    PREFIX + "/share/paperwork",
-
-    # XXX(Jflesch): The following locations are unexpected
-    # but it seems those are the locations used by Pip
-    # (sys.prefix in setup.py ?)
-    PREFIX + "/local/lib/python2.7/dist-packages/usr/share/paperwork",
-    PREFIX + "/local/lib/python2.7/dist-packages/usr/local/share/paperwork",
-    PREFIX + "/lib/python2.7/dist-packages/usr/share/paperwork",
-    PREFIX + "/lib/python2.7/dist-packages/usr/local/share/paperwork",
+    os.path.join(sys.prefix, 'share', 'paperwork'),
+    os.path.join(sys.prefix, 'local', 'share', 'paperwork'),
+    os.path.join(sys.prefix, 'paperwork'),
+    os.path.join(os.environ.get('VIRTUAL_ENV', sys.prefix), 'paperwork'),
+    os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..',
+                 '..', 'share', 'paperwork'),
+    os.path.join('data', 'paperwork'),
+    '.',
 ]
 
 
