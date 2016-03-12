@@ -28,19 +28,23 @@ from gi.repository import Gtk
 _ = gettext.gettext
 logger = logging.getLogger(__name__)
 
-PREFIX = os.environ.get('VIRTUAL_ENV', '/usr')
-
-UI_FILES_DIRS = [
-    os.path.join(sys.prefix, 'share', 'paperwork'),
-    os.path.join(sys.prefix, 'local', 'share', 'paperwork'),
-    os.path.join(sys.prefix, 'paperwork'),
-    os.path.join(os.environ.get('VIRTUAL_ENV', sys.prefix), 'paperwork'),
+SEARCH_PATHS = [
+    os.path.join(sys.prefix, 'share'),
+    os.path.join(sys.prefix, 'local', 'share'),
+    os.path.join(sys.prefix),
+    os.path.join(os.environ.get('VIRTUAL_ENV', sys.prefix)),
     os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..',
-                 '..', 'share', 'paperwork'),
-    os.path.join('data', 'paperwork'),
+                 '..', 'share'),
+    os.path.join('data'),
     '.',
 ]
 
+def find_resource(filename):
+    for path in SEARCH_PATHS:
+        ui_file = os.path.join(path, filename)
+        if os.access(ui_file, os.R_OK):
+            return ui_file
+    return None
 
 def load_uifile(filename):
     """
@@ -58,15 +62,11 @@ def load_uifile(filename):
         Exception -- If the file cannot be found
     """
     widget_tree = Gtk.Builder()
-    has_ui_file = False
-    for ui_dir in UI_FILES_DIRS:
-        ui_file = os.path.join(ui_dir, filename)
-        if os.access(ui_file, os.R_OK):
-            logger.info("UI file used: " + ui_file)
-            widget_tree.add_from_file(ui_file)
-            has_ui_file = True
-            break
-    if not has_ui_file:
+    ui_file = find_resource(os.path.join('paperwork', filename))
+    if ui_file:
+        logger.info("UI file used: " + ui_file)
+        widget_tree.add_from_file(ui_file)
+    else:
         logger.error("Can't find resource file '%s'. Aborting" % filename)
         raise Exception("Can't find resource file '%s'. Aborting" % filename)
     return widget_tree
@@ -85,15 +85,11 @@ def load_cssfile(filename):
         Exception -- If the file cannot be found
     """
     css_provider = Gtk.CssProvider()
-    has_css_file = False
-    for css_dir in UI_FILES_DIRS:
-        css_file = os.path.join(css_dir, filename)
-        if os.access(css_file, os.R_OK):
-            logger.info("CSS file used: " + css_file)
-            css_provider.load_from_path(css_file)
-            has_css_file = True
-            break
-    if not has_css_file:
+    css_file = find_resource(os.path.join('paperwork', filename))
+    if css_file:
+        logger.info("CSS file used: " + css_file)
+        css_provider.load_from_path(css_file)
+    else:
         logger.error("Can't find resource file '%s'. Aborting" % filename)
         raise Exception("Can't find resource file '%s'. Aborting" % filename)
     Gtk.StyleContext.add_provider_for_screen(
