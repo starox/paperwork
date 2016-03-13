@@ -108,6 +108,7 @@ Main features are:
             'share/paperwork/aboutdialog',
             [
                 'data/paperwork/aboutdialog/aboutdialog.glade',
+                'data/icons/paperwork.svg',
             ]
         ),
         (
@@ -140,6 +141,7 @@ Main features are:
             [
                 'data/paperwork/mainwindow/appmenu.xml',
                 'data/paperwork/mainwindow/mainwindow.glade',
+                'data/icons/paperwork.svg',
             ]
         ),
         (
