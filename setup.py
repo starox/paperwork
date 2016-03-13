@@ -7,7 +7,7 @@ setup(
     # if you change the version, don't forget to
     # * update the ChangeLog file
     # * change it also in
-    #   src/paperwork/frontend/aboutdialog/aboutdialog.glade
+    #   data/paperwork/aboutdialog/aboutdialog.glade
     # * update the archive list in the README
     version="0.3.1.1-git",
     description=(
